@@ -1,0 +1,10 @@
+---
+- name: gather facts
+  hosts: web
+  remote_user: ubuntu
+  become: yes
+  tasks:
+  - name: gather facts
+    debug:
+      msg: My kernel version is {{ ansible_facts['kernel'] }} and my FQDN is {{ ansible_facts['fqdn'] }}
+...

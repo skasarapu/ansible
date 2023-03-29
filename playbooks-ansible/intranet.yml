@@ -1,0 +1,32 @@
+---
+- name: Intranet services
+  hosts: web
+  become: yes
+  remote_user: ubuntu
+  tasks:
+  - name: latest version of apache2 and firewalld installed
+    apt:
+      name:
+        - apache2
+        - firewalld
+      state: latest
+  - name: firewalld service started
+    service:
+      name: firewalld
+      enabled: yes
+      state: started
+  - name: apache2 service is started
+    service:
+      name: apache2
+      enabled: yes
+      state: started
+
+- name: Test intranet web server
+  hosts: localhost
+  become: no
+  tasks:
+  - name: connect to intranet web server
+    uri:
+      url: http://ec2-3-129-72-22.us-east-2.compute.amazonaws.com
+      return_content: yes
+      status_code: 200

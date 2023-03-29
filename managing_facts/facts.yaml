@@ -1,0 +1,8 @@
+---
+- name: Facts dump
+  hosts: web
+  remote_user: ubuntu
+  tasks:
+  - name: "Print all facts"
+    debug:
+      var: ansible_facts

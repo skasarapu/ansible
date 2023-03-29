@@ -1,0 +1,11 @@
+---
+- hosts: web
+  remote_user: ubuntu
+  #become: true
+  tasks:
+  - name: "creating directory in /root "
+    file: 
+      path: /root/ansi-dir1
+      state: directory
+      mode: 0755
+...

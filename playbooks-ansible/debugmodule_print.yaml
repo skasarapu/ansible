@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  remote_user: ubuntu
+  become: true
+  tasks:
+  - name: "usage of debug module"
+    debug:
+      msg: "Hello Ansible"
+...

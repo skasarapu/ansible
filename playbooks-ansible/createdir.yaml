@@ -1,0 +1,10 @@
+---
+- hosts: web
+  remote_user: ubuntu
+  tasks:
+  - name: "creating directory in /tmp filesystem"
+    file: 
+      path: /tmp/ansi-dir1
+      state: directory
+      mode: 0755
+...

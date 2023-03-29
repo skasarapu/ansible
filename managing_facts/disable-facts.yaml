@@ -1,0 +1,12 @@
+---
+- name: This play gathers no facts automatically
+  hosts: web
+  gather_facts: no  # Disable facts gathering
+  remote_user: ubuntu
+  tasks:
+  - name: create file on managed node
+    file:
+      path: /tmp/abc.txt
+      state: touch
+      mode: u=rw,g=r,o=r
+...

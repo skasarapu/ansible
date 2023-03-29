@@ -1,0 +1,31 @@
+---
+- hosts: web
+  remote_user: ubuntu
+  become: yes
+  tasks:
+  - name: create fact directory
+    file:
+      path: /etc/ansible/facts.d/
+      state: directory
+  - name: create a static custom fact
+    copy:
+      content: '"bar"'
+      dest: /etc/ansible/facts.d/sample.fact
+  - name: Create a dynamic custom fact
+    copy:
+      dest: /etc/ansible/facts.d/apache2f.fact
+      mode: 0775
+      content: |
+        #!/usr/bin/python3
+
+        import json
+        def render_data(data):
+           return json.dumps(data)
+
+        arbitrary_data = {}
+        arbitrary_data["apache2f"] = []
+        arbitrary_data["apache2f"].append("web_pkg")
+        if True:
+          arbitrary_data["apache2f"].append("apache2")
+
+        print(render_data(arbitrary_data["apache2f"]))

@@ -1,0 +1,16 @@
+---
+- hosts: web
+  vars:
+    web_pkg: apache2
+    db_pkg: mysql-server
+    web_service: http
+  remote_user: ubuntu
+  become: true
+  tasks:
+  - name: "Installing packages"
+    apt:
+      name: 
+        - "{{ web_pkg }}"
+        - "{{ db_pkg }}"
+      state: latest
+...

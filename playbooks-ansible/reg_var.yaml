@@ -1,0 +1,15 @@
+---
+- name: Installs a package and prints the result
+  hosts: web
+  remote_user: ubuntu
+  become: true
+  tasks:
+    - name: Install the package
+      apt:
+        name: apache2
+        state: latest
+      register: inst_result
+
+    - debug:
+        var: inst_result
+...

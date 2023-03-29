@@ -1,0 +1,15 @@
+---
+- hosts: db
+  remote_user: ubuntu
+  become: true
+  tasks:
+  - name: "Installing mysql-server database"
+    apt:
+      name: mysql-server
+      state: latest
+  - name: "Starting mysql-server database"
+    service:
+      name: mysql
+      state: started
+      enabled: yes
+...

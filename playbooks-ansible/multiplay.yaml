@@ -1,0 +1,41 @@
+---
+- name: First play
+  hosts: web
+  remote_user: ubuntu
+  become: true
+  tasks:
+  - name: "Install Apache"
+    apt:
+      name: apache2
+      state: latest
+  - name: "start apache2 service"
+    service:
+      name: apache2
+      state: started
+      enabled: true
+  - name: "Using Inline module for file changes"
+    lineinfile:
+      dest: /var/www/html/index.html
+      regexp: 'works'
+      line: 'Ansible'
+      state: present
+  - name: "start apache2 service"
+    service:
+      name: apache2
+      state: restarted
+
+- name: Second play
+  hosts: db
+  remote_user: ubuntu
+  become: true
+  tasks:
+  - name: "Installing mysql-server database"
+    apt:
+      name: mysql-server
+      state: latest
+  - name: "Starting mysql-server database"
+    service:
+      name: mysql
+      state: started
+      enabled: yes
+...

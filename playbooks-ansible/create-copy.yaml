@@ -1,0 +1,9 @@
+---
+- hosts: web
+  remote_user: ubuntu
+  tasks:
+  - name: "Using ansible copy module to copy file"
+    copy:
+      src: /tmp/test.txt
+      dest: /tmp/test.txt
+...
