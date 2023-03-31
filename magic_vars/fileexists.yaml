@@ -1,0 +1,15 @@
+---
+- hosts: web
+  remote_user: ubuntu
+  become: yes
+  tasks:
+  - name: "Check whether python exists"
+    file:
+      path: /usr/bin/python3
+      state: file
+    register: inst_result
+
+  - name: "printing"
+    debug:
+      var: inst_result 
+...

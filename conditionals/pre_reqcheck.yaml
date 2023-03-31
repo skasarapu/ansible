@@ -1,0 +1,13 @@
+---
+- hosts: web
+  remote_user: ubuntu
+  become: yes
+  tasks:
+  - name: "Validate whether python3 exists on Managed node"
+    command: which python3
+    register: result
+
+  - name: "Copy files if python3 exists"
+    debug:
+      var: result
+...

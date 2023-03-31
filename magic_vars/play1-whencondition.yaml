@@ -1,0 +1,13 @@
+---
+- hosts: web
+  remote_user: ubuntu
+  become: yes
+  vars:
+    bool_a: true
+  tasks:
+  - name: "Testing ansible when conditional logic"
+    apt:
+      name: apache2
+      state: absent
+    when: bool_a == true
+...

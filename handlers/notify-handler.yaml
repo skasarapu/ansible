@@ -1,0 +1,24 @@
+---
+- hosts: db
+  remote_user: ubuntu
+  become: yes
+  tasks:
+  - name: Install mysql-server
+    apt:
+      name: mysql-server
+      state: present
+    notify:
+      - set db password
+
+  - name: Make sure the database service is running
+    service:
+      name: mysql
+      state: started
+      enabled: yes
+
+  handlers:
+  - name: set db password
+    mysql_user:
+      name: root
+      password: redhat
+...

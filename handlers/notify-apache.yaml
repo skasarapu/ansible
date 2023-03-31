@@ -1,0 +1,19 @@
+---
+- hosts: web
+  remote_user: ubuntu
+  become: yes
+  tasks:
+  - name: Install apache2
+    apt:
+      name: apache2
+      state: present
+    notify:
+      - start apache
+
+
+  handlers:
+  - name: start apache
+    service:
+      name: apache2
+      state: restarted
+...

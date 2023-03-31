@@ -1,0 +1,17 @@
+---
+- hosts: web
+  remote_user: ubuntu
+  gather_facts: no
+  tasks:
+  - name: This task will be skipped in check mode
+    git:
+      repo: git@github.com:shravan1978/ansible.git
+      dest: /tmp
+    when: not ansible_check_mode
+
+  - name: this task will ignore errors in check mode
+    git:
+      repo: ssh@github.com:shravan1978/ansible.git
+      dest: /tmp/test2
+    ignore_errors: "{{ ansible_check_mode }}"
+...

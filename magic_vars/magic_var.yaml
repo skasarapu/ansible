@@ -1,0 +1,11 @@
+---
+- hosts: web
+  remote_user: ubuntu
+  become: yes
+  tasks:
+  - name: "Installing Apache on only one specific host"
+    apt:
+      name: apache2
+      state: latest
+    when: inventory_hostname == 'ec2-18-191-50-245.us-east-2.compute.amazonaws.com'
+...

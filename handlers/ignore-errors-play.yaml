@@ -1,0 +1,15 @@
+---
+- hosts: web
+  remote_user: ubuntu
+  become: yes
+  tasks:
+  - name: Latest version of notapkg is installed
+    apt:
+      name: notapkg
+      state: latest
+    ignore_errors: yes
+
+  - name: Proceeded to next task execution
+    debug:
+      msg: "validated ignore_errors"
+...

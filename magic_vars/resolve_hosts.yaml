@@ -1,0 +1,10 @@
+---
+- hosts: web
+  remote_user: ubuntu
+  become: yes
+  gather_facts: no
+  tasks:
+  - name: Display managed host name
+    debug:
+      msg: "{{ inventory_hostname }}"
+...

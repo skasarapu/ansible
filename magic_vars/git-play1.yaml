@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  remote_user: ubuntu
+  gather_facts: no
+  become: yes
+  tasks:
+  - name: 'clone repo'
+    git:
+      repo: 'https://github.com/shravan1978/ansible.git'
+      dest: /tmp/test2
+      update: no
+...

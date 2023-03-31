@@ -1,0 +1,16 @@
+---
+- hosts: web
+  remote_user: ubuntu
+  become: yes
+  tasks:
+  - name: "Ascertain whether /etc/saveabort.txt file exists"
+    stat:
+      path: /etc/saveabort.txt
+    register: result
+
+  - name: "Create /etc/saveabort.txt file if doesn't exist"
+    copy:
+      dest: /etc/saveabort.txt
+      content: " I am there "
+    when: result.stat.exists == false
+...
