@@ -1,0 +1,21 @@
+---
+- hosts: web
+  remote_user: ubuntu
+  become: yes
+  tasks:
+  - name: Installing & configuring Apache
+    block:
+    - name: Install apache
+      apt:
+        name: apache2
+        state: present
+
+    - name: update the html content
+      lineinfile:
+        dest: /var/www/html/index.html
+        regexp: 'works'
+        line: 'Ansible'
+        state: present
+
+    when: ansible_distribution == 'Ubuntu' 
+...
